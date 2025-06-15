@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Cooktogether</title>
+    <meta charset="utf-8">
+    <meta name="description" content="&lt;model-viewer&gt; template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link type="text/css" href="./styles.css" rel="stylesheet"/>
+    </head>
+
+    <style>
+        body {
+  margin: 0;
+  background-color: #e0e0e0; /* light grey background */
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+    min-height: 100vh;
+}
+
+
+    .controls {
+        position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  gap: 5px;
+    }
+    .row {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-bottom: 10px;
+    }
+
+    .label {
+      font-weight: bold;
+      margin-right: 10px;
+      min-width: 70px;
+    }
+
+    button {
+      padding: 4px 8px;
+      font-size: 15px;
+      background: #fff;
+      border: 1px solid #888;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #ddd;
+    }
+    
+  </style>
+  </head>
+  <body>
+    <div class="kitchen">
+    <header>
+      <h1>CookTogether</h1>
+    </header>
+    </div>
+    <!-- <model-viewer> HTML element -->
+    <model-viewer src="DVE a2 blender animation modelviewer test final 11.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls tone-mapping="neutral" poster="poster.png" shadow-intensity="1" animation-name="kepthandle" camera-orbit="-450.5deg 68.72deg 1.018m" field-of-view="26.26deg" id="kitchen" >
+      <button class="Hotspot" slot="hotspot-1" data-surface="14 0 1816 1819 1814 0.283 0.341 0.375" data-visibility-attribute="visible">
+          <div class="HotspotAnnotation">Water Collecting Bowl
+          </div>
+      </button><button class="Hotspot" slot="hotspot-2" data-surface="24 0 125 124 170 0.159 0.402 0.439" data-visibility-attribute="visible">
+          <div class="HotspotAnnotation">Handle
+          </div>
+      </button><button class="Hotspot" slot="hotspot-3" data-surface="28 0 70 69 215 0.467 0.064 0.469" data-visibility-attribute="visible">
+          <div class="HotspotAnnotation">Adult Tool Head</div>
+      </button><button class="Hotspot" slot="hotspot-4" data-surface="53 0 1397 1365 1366 0.172 0.583 0.246" data-visibility-attribute="visible">
+          <div class="HotspotAnnotation">Child Tool Head</div>
+      </button><button class="Hotspot" slot="hotspot-5" data-surface="17 0 92 93 91 0.406 0.258 0.336" data-visibility-attribute="visible">
+          <div class="HotspotAnnotation">Handles Charging Port
+          </div>
+      </button><button class="Hotspot" slot="hotspot-6" data-surface="49 0 210 201 200 0.564 0.378 0.058" data-visibility-attribute="visible">
+          <div class="HotspotAnnotation">Child Handle
+          </div>
+      </button>
+      <div class="progress-bar hide" slot="progress-bar">
+          <div class="update-bar"></div>
+      </div>
+      <button slot="ar-button" id="ar-button">
+          View in your space
+      </button>
+      <div id="ar-prompt">
+          <img src="ar_hand_prompt.png">
+      </div>
+
+      <div class="controls">
+        <div class="row">
+      <button onClick="varientwhite()">Silver</button>
+      <button onClick="varientblack()">Black</button>
+      <button onClick="varientlightblue()">White</button>
+      <button onClick="varientpremium()">Premium</button>
+      <button onClick="varientdyson()">Dyson</button>
+      </div>
+
+        <div class="row">
+      <button onClick="view('-449.8deg 89.19deg 1.018m','26.26deg')">Front</button>
+      <button onClick="view('-450deg 0.0000573deg 1.018m','26.26deg')">Top</button>
+      <button onClick="view('-360.5deg 88.14deg 0.8723m','26.26deg')">Side</button>
+      <button onClick="view('-450deg 180deg 1.018m','26.26deg')">Bottom</button>
+      <button onClick="view('-419.7deg 39.3deg 0.5912m','12deg','-0.08m 0.15m 0.12m')">Handles</button>
+      <button onClick="view('-524.6deg 69.53deg 0.5912m','12deg')">Labels</button>
+        </div>
+
+        <div class="row">
+      <button onClick="bowlanimate()">Bowl Animation</button>
+      <button onClick="tool1animate()">Tool 1 Animation</button>
+      <button onClick="tool2animate()">Tool 2 Animation</button>
+      <button onClick="tool3animate()">Tool 3 Animation</button>
+      <button onClick="tool4animate()">Tool 4 Animation</button>
+      <button onClick="tool5animate()">Tool 5 Animation</button>
+      <button onClick="tool6animate()">Tool 6 Animation</button>
+      <button onClick="allanimate()">All Tools Animation</button>
+      <button onClick="handlesanimate()">Handles Animation</button>
+      <button onClick="explodeanimate()">Handle Explode Animation</button>
+      <button onClick="slotanimate()">Slot Animation</button>
+      <button onClick="pause()">Pause Animation</button>
+      </div>
+
+      </div>
+
+    </model-viewer> 
+    <script>
+        function varientwhite() {
+            document.getElementById('kitchen').variantName='v1 white'
+        }
+        function varientlightblue() {
+            document.getElementById('kitchen').variantName='v2 light blue'
+        }
+        function varientdyson() {
+            document.getElementById('kitchen').variantName='v3 dyson'
+        }
+        function varientpremium() {
+            document.getElementById('kitchen').variantName='v4 premium'
+        }
+        function varientblack() {
+            document.getElementById('kitchen').variantName='v5 black'
+        }
+
+        function view(orbit, zoom, target) {
+            document.getElementById('kitchen').cameraOrbit=orbit;
+            document.getElementById('kitchen').fieldOfView=zoom;
+            document.getElementById('kitchen').cameraTarget=target;
+        }
+
+        function bowlanimate() {
+            document.getElementById('kitchen').pause();
+            document.getElementById('kitchen').animationName='bowl.001';
+            document.getElementById('kitchen').play({pingpong:true});
+        }
+         function tool1animate() {
+            document.getElementById('kitchen').pause();
+            document.getElementById('kitchen').animationName='tool1';
+            document.getElementById('kitchen').play({pingpong:true});
+        }
+         function tool2animate() {
+            document.getElementById('kitchen').pause();
+            document.getElementById('kitchen').animationName='tool2';
+            document.getElementById('kitchen').play({pingpong:true});
+        }
+         function tool3animate() {
+            document.getElementById('kitchen').pause();
+            document.getElementById('kitchen').animationName='tool3';
+            document.getElementById('kitchen').play({pingpong:true});
+        }
+         function tool4animate() {
+            document.getElementById('kitchen').pause();
+            document.getElementById('kitchen').animationName='tool4.011';
+            document.getElementById('kitchen').play({pingpong:true});
+        }
+         function tool5animate() {
+            document.getElementById('kitchen').pause();
+            document.getElementById('kitchen').animationName='tool5.001';
+            document.getElementById('kitchen').play({pingpong:true});
+        }
+         function tool6animate() {
+            document.getElementById('kitchen').pause();
+            document.getElementById('kitchen').animationName='tool6';
+            document.getElementById('kitchen').play({pingpong:true});
+        }
+         function allanimate() {
+            document.getElementById('kitchen').pause();
+            document.getElementById('kitchen').animationName='alltools';
+            document.getElementById('kitchen').play({pingpong:true});
+        }
+         function handlesanimate() {
+            document.getElementById('kitchen').pause();
+            document.getElementById('kitchen').animationName='kepthandle';
+            document.getElementById('kitchen').play({pingpong:true});
+        }
+         function explodeanimate() {
+            document.getElementById('kitchen').pause();
+            document.getElementById('kitchen').animationName='explode';
+            document.getElementById('kitchen').play({pingpong:true});
+        }
+        function slotanimate() {
+            document.getElementById('kitchen').pause();
+            document.getElementById('kitchen').animationName='headanimate.002';
+            document.getElementById('kitchen').play({pingpong:true});
+        }
+        function pause() {
+            document.getElementById('kitchen').pause();
+        }
+
+
+    </script> 
+    <script src="script.js"></script>
+    <!-- Loads <model-viewer> for browsers: -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+  </body>
+</html>
